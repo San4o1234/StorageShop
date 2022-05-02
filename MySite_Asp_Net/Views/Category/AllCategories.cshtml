@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MySite_Asp_Net.Models.Category>
+
+@{
+    ViewData["Title"] = "AllCategories";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>AllCategories</h2>
+
+    @if(User.IsInRole("admin"))
+    {
+        <p>
+            <a asp-action="AddCategory" asp-controller="Category">Create New</a>
+        </p>
+    }
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+ @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="CategoryDetails" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-success">  Products in Category  </a>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a asp-action="EditCategory" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-primary">  Edit  </a>
+                        <a asp-action="RemoveCategory" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-danger">  Delete  </a>
+                    }
+                }
+            </td>
+        </tr>
+  }
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+﻿@*
+    View buy Page.
+*@
+@model MySite_Asp_Net.Models.Order
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<!doctype html>
+<html>
+<head>
+    <title>"Storage"</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>Order</h1>
+    <form method="post">
+        <input type="hidden" value="@ViewBag.ProductId" name="Product.Id" />
+        <table>
+
+            <tr>
+                <td>User Name:</td>
+                <td>
+                    <input asp-for="User.Email" name="User.Email" value="@User.Identity.Name" />
+                </td>
+                @*<td> Product: </td>
+                <td>
+                    @Model.Products.Where(p => p.Id == @ViewBag.ProductId).FirstOrDefault()
+                </td>*@
+            </tr>
+            <tr>
+                <td><input type="submit" value="Buy" class="btn btn-info"/></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+

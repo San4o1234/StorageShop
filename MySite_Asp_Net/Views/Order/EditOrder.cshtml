@@ -1,0 +1,38 @@
+﻿@model MySite_Asp_Net.Models.Order
+
+@{
+    ViewData["Title"] = "EditOrder";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Edit Order</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="User.Email" class="control-label">UserEmail</label>
+                @*<input asp-for="UserName" name="UserName" value="@Model.UserName" class="form-control" />*@
+                @Html.EditorFor(o => o.User.Email)
+                <span asp-validation-for="User.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDate" class="control-label">OrderDate</label>
+                @*<input asp-for="OrderDate" name="OrderDate" value="@Model.OrderDate" class="form-control" />*@
+                @Html.EditorFor(o => o.OrderDate)
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-block btn-success" />
+                <a href="~/Order/AllOrders" class="btn btn-danger">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+   
+</div>

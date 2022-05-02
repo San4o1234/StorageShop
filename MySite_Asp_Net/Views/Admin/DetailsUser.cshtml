@@ -1,0 +1,46 @@
+﻿@model MySite_Asp_Net.Models.User
+
+@{
+    ViewData["Title"] = "DetailsUser";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Details User Orders</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Orders)
+        </dt>
+        <dd>
+            <ol>
+                @foreach (var o in Model.Orders.ToList())
+                {
+                    <li>
+                        @o.OrderDate
+                        <ul>
+                            <li>Product: | Price:  </li>
+                            @foreach (var p in o.Products.ToList())
+                            {
+
+                                <li>@p.ProductName - @p.Price</li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ol>
+            
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="AllUsers" asp-controller="Admin" class="btn btn-block btn-danger">Back to List</a>
+</div>
